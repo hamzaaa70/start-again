@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Just a Question 💗</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#ffdde1,#ee9ca7);
+    overflow:hidden;
+}
+
+.container{
+    text-align:center;
+    padding:30px;
+    background:rgba(255,255,255,0.85);
+    border-radius:25px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.15);
+    max-width:350px;
+    width:90%;
+}
+
+h1{
+    font-size:1.8rem;
+    color:#ff4d6d;
+    margin-bottom:10px;
+}
+
+p{
+    font-size:1rem;
+    color:#444;
+}
+
+.buttons{
+    margin-top:25px;
+    position:relative;
+    height:120px;
+}
+
+#yes{
+    font-size:1.2rem;
+    padding:18px 40px;
+    border-radius:50px;
+    border:none;
+    background:#ff4d6d;
+    color:white;
+    cursor:pointer;
+    box-shadow:0 10px 20px rgba(255,77,109,0.4);
+    transition:transform 0.2s;
+}
+
+#yes:hover{
+    transform:scale(1.05);
+}
+
+#no{
+    position:absolute;
+    top:60px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:0.9rem;
+    padding:10px 18px;
+    border-radius:30px;
+    border:none;
+    background:#ccc;
+    color:#333;
+}
+
+.heart{
+    position:absolute;
+    font-size:20px;
+    animation:float 6s linear infinite;
+    color:#ff4d6d;
+}
+
+@keyframes float{
+    0%{transform:translateY(100vh);opacity:0;}
+    20%{opacity:1;}
+    100%{transform:translateY(-10vh);opacity:0;}
+}
+
+#result{
+    display:none;
+}
+
+.fade-in{
+    animation:fade 1.2s ease forwards;
+}
+
+@keyframes fade{
+    from{opacity:0;transform:scale(0.9);}
+    to{opacity:1;transform:scale(1);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="question">
+    <h1>Can we start again? 💖</h1>
+    <p>I miss you, jaan.<br>No pressure. Just a soft question.</p>
+
+    <div class="buttons">
+        <button id="yes">Yes 💕</button>
+        <button id="no">No 🙈</button>
+    </div>
+</div>
+
+<div class="container fade-in" id="result">
+    <h1>Yayyyy 🥹💗</h1>
+    <p>
+        This made my heart smile.<br>
+        Slowly. Honestly.<br>
+        Thank you for being open.
+    </p>
+</div>
+
+<script>
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+const question = document.getElementById("question");
+const result = document.getElementById("result");
+
+noBtn.addEventListener("mouseover", ()=>{
+    const x = Math.random() * 200 - 100;
+    const y = Math.random() * 80 - 40;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+yesBtn.addEventListener("click", ()=>{
+    question.style.display="none";
+    result.style.display="block";
+    createHearts();
+});
+
+function createHearts(){
+    for(let i=0;i<30;i++){
+        const heart = document.createElement("div");
+        heart.className="heart";
+        heart.innerHTML="💗";
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.animationDuration=(Math.random()*3+3)+"s";
+        document.body.appendChild(heart);
+
+        setTimeout(()=>heart.remove(),6000);
+    }
+}
+</script>
+
+</body>
+</html>
